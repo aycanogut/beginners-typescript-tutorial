@@ -17,12 +17,29 @@ interface Post {
  * How do we ensure that makeUser ALWAYS
  * returns a user?
  */
-const makeUser = () => {
-  return {};
+const makeUser = ({ id, firstName, lastName, role, posts }: User): User => {
+  return {
+    id: id,
+    firstName: firstName,
+    lastName: lastName,
+    role: role,
+    posts: posts,
+  };
 };
 
 it("Should return a valid user", () => {
-  const user = makeUser();
+  const user = makeUser({
+    id: 1,
+    firstName: "John",
+    lastName: "Doe",
+    role: "admin",
+    posts: [
+      {
+        id: 1,
+        title: "Post 1",
+      },
+    ],
+  });
 
   expect(user.id).toBeTypeOf("number");
   expect(user.firstName).toBeTypeOf("string");
